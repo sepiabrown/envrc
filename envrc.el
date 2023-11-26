@@ -78,7 +78,7 @@ Messages are written into the *envrc-debug* buffer."
   "Whether envrc will update environment when changing directory in eshell."
   :type 'boolean)
 
-(defcustom envrc-direnv-executable "direnv"
+(defcustom envrc-direnv-executable "ls"
   "The direnv executable used by envrc."
   :type 'string)
 
@@ -414,7 +414,7 @@ ARGS is as for `call-process'."
   (interactive)
   (envrc--with-required-current-env env-dir
     (let* ((default-directory env-dir)
-           (exit-code (envrc--call-process-with-global-env envrc-direnv-executable nil (get-buffer-create "*envrc-allow*") nil "allow")))
+           (exit-code (envrc--call-process-with-global-env envrc-direnv-executable nil (get-buffer-create "*envrc-allowww*") nil "-al")))
       (if (zerop exit-code)
           (envrc--update-env env-dir)
         (display-buffer "*envrc-allow*")
